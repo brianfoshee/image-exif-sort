@@ -1,0 +1,13 @@
+This script will iterate through folders with images in them, find the date and time they were taken 
+based on EXIF data, and save the file to a single folder based on this date and time in this format:
+
+Taken Dec, 23 2010 12:34:15 PM
+File will be saved as 20101223-123415-0.jpg
+*note - the -0 at the end of the file is in case there are multiple images at this time. It'll
+increment infinitely.
+
+I'm sure this could be sped up.
+
+Dependencies are the RMagick gem.
+
+Set the folders in the initialize method.
