@@ -1,11 +1,12 @@
 require 'rubygems'
-require 'rmagick'
+require 'RMagick'
 
 class RenamePhotos
-  attr_accessor :base_folder, :destination_folder
+  attr_accessor :base_folder, :destination_folder, :counter
   def initialize
-    @base_folder = "/Users/brian/Desktop/wedding_pics"
-    @destination_folder = "/Users/brian/Desktop/wedding_pics/all"
+    @base_folder = "/path/to/folders/of/images"
+    @destination_folder = "/path/to/where/you/want/images"
+    @counter = 1
   end
   
   def write_data(day, time, image)
@@ -15,6 +16,8 @@ class RenamePhotos
     end
     file_name = "#{@destination_folder}/#{day[0]+day[1]+day[2]}-#{time[0]+time[1]+time[2]}-#{postfix}.jpg"
     image.write(file_name)
+    puts "Writing file number #{@counter}"
+    @counter = @counter + 1
   end
   
   def read_data(image)
@@ -23,11 +26,13 @@ class RenamePhotos
   end
   
   def go
+    puts "before Job: " + Dir["#{@destination_folder}/*"].count.to_s + " files"
     Dir["#{@base_folder}/*"].each do |folder|
       Dir["#{folder}/*"].each do |image|
         read_data(Magick::Image.read("#{image}").first)
       end
     end
+    puts "After Job: "+ Dir["#{@destination_folder}/*"].count.to_s + " files"
   end
 
 end
