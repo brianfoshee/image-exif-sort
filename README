@@ -12,11 +12,7 @@ Dependencies are the RMagick gem.
 
 Set the folders in the initialize method.
 
-Do be aware that running this on over 100 images at a time WILL eat your memory. I have not found
-a way to release the image data after opening an image. If anyone knows how to do this please let me know.
-On my Ubuntu 10.10 server I did 650 images in 9 minutes. The memory issue wasn't as bad as on my 
-mac running OS X 10.5, on which I had to run about 100 images at a time so it wouldn't lock up the
-laptop. Both machines have 4 GB of RAM, I guess Ubuntu handles the garbage collection better?
+Image memory now being released! (via JanneM)
 
 Use-Case:
 My sister recently got married, and received hundreds of images from her photographer.

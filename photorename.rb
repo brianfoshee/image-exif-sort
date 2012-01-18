@@ -16,6 +16,7 @@ class RenamePhotos
     end
     file_name = "#{@destination_folder}/#{day[0]+day[1]+day[2]}-#{time[0]+time[1]+time[2]}-#{postfix}.jpg"
     image.write(file_name)
+    image.release!
     puts "Writing file number #{@counter}"
     @counter = @counter + 1
   end
