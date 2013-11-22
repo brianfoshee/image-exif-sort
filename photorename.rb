@@ -30,7 +30,7 @@ class RenamePhotos
 
   def go
     puts "before Job: " + Dir["#{@destination_folder}/*"].count.to_s + " files"
-    Dir["#{@base_folder}/*"].each do |image|
+    Dir["#{@base_folder}/**/*"].each do |image|
       i = Image.open("#{image}")
       puts i.path
       read_data(i)
