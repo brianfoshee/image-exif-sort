@@ -26,7 +26,13 @@ class RenamePhotos
   end
 
   def read_data(image, ext)
-    d = DateTime.strptime image['EXIF:DateTimeOriginal'], "%Y:%m:%d %H:%M:%S"
+    created_at = image['EXIF:DateTimeOriginal']
+    d = if ext == 'JPG'
+      fmt = "%Y:%m:%d %H:%M:%S"
+      DateTime.strptime created_at, fmt
+    elsif ext == 'NEF'
+      DateTime.parse created_at
+    end
     puts "d #{d}"
     write_data(d, image, ext)
   end
