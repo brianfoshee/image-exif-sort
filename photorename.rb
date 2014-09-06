@@ -34,11 +34,13 @@ class RenamePhotos
   def go
     puts "before Job: " + Dir["#{@destination_folder}/*"].count.to_s + " files"
     Dir["#{@base_folder}/**/*"].each do |image|
-      i = Image.open("#{image}")
-      ext = image.split("/").last.split(".").last
-      puts "### #{i.path} ext: #{ext} ###"
-      read_data(i, ext)
-      i.destroy!
+      unless File.directory?(image)
+        i = Image.open("#{image}")
+        ext = image.split("/").last.split(".").last
+        puts "### #{i.path} ext: #{ext} ###"
+        read_data(i, ext)
+        i.destroy!
+      end
     end
     puts "After Job: "+ Dir["#{@destination_folder}/*"].count.to_s + " files"
   end
