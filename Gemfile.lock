@@ -1,5 +1,5 @@
 GEM
-  remote: https://www.rubygems.org/
+  remote: https://rubygems.org/
   specs:
     mini_magick (3.6.0)
       subexec (~> 0.2.1)
